@@ -10,11 +10,11 @@ Não utilizaremos nada do seu projeto além de avaliar suas habilidades.
 
 ## Envio
 
-Faça um fork deste repositório
-Crie sua branch
-⚠️ Faça um commit inicial ao começar
-⚠️ Faça um commit final ao concluir
-Quando terminar, envie um pull request para nós
+- Faça um fork deste repositório
+- Crie sua branch
+- ⚠️ Faça um commit inicial ao começar
+- ⚠️ Faça um commit final ao concluir
+- Quando terminar, envie um pull request para nós
 
 ## Stack
 
