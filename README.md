@@ -31,7 +31,7 @@ https://www.figma.com/design/kZ59orUONXXeNTCuQZmars/Desafio-T%C3%A9cnico---Dev-F
 
 ## História
 
-História do Usuário:
+### História do Usuário:
 
 Como usuário do PsicoManager, eu quero ser capaz de ativar o PsicoBank, preencher as informações necessárias em uma interface de fácil navegação, e configurar minha conta bancária e opções de cobrança, para que eu possa começar a usar o PsicoBank de maneira eficiente, sem dificuldades.
 
@@ -64,9 +64,9 @@ Geral
 
 Modal: Título do modal Ativar o PsicoBank - Etapas do modal: Cadastrar uma conta (passo 1), Canais de envio e Mensagem de cobrança (passo 2 ) e Forma de pagamento da cobrança (passo 3).
 
-Passo 1: Cadastrar uma Conta Bancária
+### Passo 1: Cadastrar uma Conta Bancária
 
-### 1. Wizard (etapas/Steps):
+1. Wizard (etapas/Steps):
 
 - Passo atual check no step, etapas futuras desabilitadas até o usuário avançar.
 - A interface do wizard deve ser interativa e exibir a etapa correta com destaque.
