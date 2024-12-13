@@ -66,10 +66,10 @@ Modal: Título do modal Ativar o PsicoBank - Etapas do modal: Cadastrar uma cont
 
 Passo 1: Cadastrar uma Conta Bancária
 
-1. Wizard (etapas/Steps):
+### 1. Wizard (etapas/Steps):
 
-   - Passo atual check no step, etapas futuras desabilitadas até o usuário avançar.
-   - A interface do wizard deve ser interativa e exibir a etapa correta com destaque.
+- Passo atual check no step, etapas futuras desabilitadas até o usuário avançar.
+- A interface do wizard deve ser interativa e exibir a etapa correta com destaque.
 
 2. Campos obrigatórios:
    - Profissional: Pré-selecionado e desabilitado.
@@ -104,7 +104,7 @@ Após escolher "Pessoa Jurídica" no dropdown "Tipo de pessoa", os campos obriga
 4. Validação em Tempo Real:
    - Se campos obrigatórios não forem preenchidos, deve exibir uma flag de erro e o comportamento do campo com erro
 
-Passo 2: Canais de Envio e Mensagens de Cobrança
+### Passo 2: Canais de Envio e Mensagens de Cobrança
 
 1. Wizard:
 
@@ -118,12 +118,9 @@ Passo 2: Canais de Envio e Mensagens de Cobrança
 
 3. Botões de Navegação:
    - Cancelar: Fecha o modal.
-   - Próximo: Avança para o próximo passo, se campos obrigatórios não forem preenchidos, deve exibir uma flag de erro e o comportamento do campo com erro
-     .
+   - Próximo: Avança para o próximo passo, se campos obrigatórios não forem preenchidos, deve exibir uma flag de erro e o comportamento do campo com erro.
 
----
-
-Passo 3: Forma de Pagamento da Cobrança
+### Passo 3: Forma de Pagamento da Cobrança
 
 1. Wizard
    - A etapa atual será marcada com estado de acesso, enquanto as etapas anteriores estarão com check.
@@ -142,9 +139,7 @@ Passo 3: Forma de Pagamento da Cobrança
 4. Validação em Tempo Real:
    - Se algum campo obrigatório não for preenchido, deve exibir uma flag de erro, assim como estado de campo.
 
----
-
-Pontos Adicionais
+### Pontos Adicionais
 
 1. Persistência de Dados:
 
