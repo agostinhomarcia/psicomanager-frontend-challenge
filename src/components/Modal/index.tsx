@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import {
   ModalOverlay,
   ModalContainer,
@@ -12,16 +11,8 @@ import {
   ModalContent,
   ModalFooter,
 } from "./styles";
-
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  currentStep: number;
-  children: ReactNode;
-  onNext?: () => void;
-  onBack?: () => void;
-  isLastStep?: boolean;
-}
+import { usePsicoBank } from "../../contexts/PsicoBankContext";
+import { Step1BankAccount } from "../Steps/Step1BankAccount/Step1BankAccount";
 
 const steps = [
   "Cadastrar uma conta",
@@ -29,23 +20,28 @@ const steps = [
   "Forma de pagamento da cobrança",
 ];
 
-export function Modal({
-  isOpen,
-  onClose,
-  currentStep,
-  children,
-  onNext,
-  onBack,
-  isLastStep = false,
-}: ModalProps) {
-  if (!isOpen) return null;
+export function PsicoBank() {
+  const { isModalOpen, currentStep, closeModal, nextStep, previousStep } =
+    usePsicoBank();
+
+  const handleNextClick = () => {
+    if (currentStep === 1) {
+      // Aqui você pode adicionar a lógica de validação do formulário
+      console.log("Form data:" /* form data here */);
+    }
+    nextStep();
+  };
+
+  if (!isModalOpen) return null;
+
+  const isLastStep = currentStep === 3;
 
   return (
     <ModalOverlay>
       <ModalContainer>
         <ModalHeader>
           <h2>Ativar o PsicoBank</h2>
-          <CloseButton onClick={onClose}>&times;</CloseButton>
+          <CloseButton onClick={closeModal}>&times;</CloseButton>
         </ModalHeader>
 
         <StepsContainer>
@@ -62,19 +58,22 @@ export function Modal({
           ))}
         </StepsContainer>
 
-        <ModalContent>{children}</ModalContent>
+        <ModalContent>
+          {currentStep === 1 && <Step1BankAccount />}
+          {/* Add other steps here */}
+        </ModalContent>
 
         <ModalFooter>
-          <button className="cancel" onClick={onClose}>
+          <button className="cancel" onClick={closeModal}>
             Cancelar
           </button>
           {currentStep > 1 && (
-            <button className="back" onClick={onBack}>
+            <button className="back" onClick={previousStep}>
               Voltar
             </button>
           )}
-          <button className="next" onClick={onNext}>
-            {isLastStep ? "Concluir" : "Próximo"}
+          <button className="next" onClick={handleNextClick}>
+            {currentStep === 3 ? "Concluir" : "Próximo"}
           </button>
         </ModalFooter>
       </ModalContainer>

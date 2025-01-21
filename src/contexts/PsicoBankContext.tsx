@@ -7,6 +7,7 @@ interface PsicoBankContextData {
   closeModal: () => void;
   nextStep: () => void;
   previousStep: () => void;
+  handleSubmit: () => void;
 }
 
 const PsicoBankContext = createContext({} as PsicoBankContextData);
@@ -33,6 +34,12 @@ export function PsicoBankProvider({ children }: { children: ReactNode }) {
     setCurrentStep((prev) => Math.max(prev - 1, 1));
   };
 
+  const handleSubmit = () => {
+    // Implement form submission logic here
+    closeModal();
+    // Show success message
+  };
+
   return (
     <PsicoBankContext.Provider
       value={{
@@ -42,6 +49,7 @@ export function PsicoBankProvider({ children }: { children: ReactNode }) {
         closeModal,
         nextStep,
         previousStep,
+        handleSubmit,
       }}
     >
       {children}
