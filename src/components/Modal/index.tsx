@@ -21,16 +21,7 @@ const steps = [
 ];
 
 export function PsicoBank() {
-  const { isModalOpen, currentStep, closeModal, nextStep, previousStep } =
-    usePsicoBank();
-
-  const handleNextClick = () => {
-    if (currentStep === 1) {
-      // Aqui você pode adicionar a lógica de validação do formulário
-      console.log("Form data:" /* form data here */);
-    }
-    nextStep();
-  };
+  const { isModalOpen, currentStep, closeModal, previousStep } = usePsicoBank();
 
   if (!isModalOpen) return null;
 
@@ -64,16 +55,16 @@ export function PsicoBank() {
         </ModalContent>
 
         <ModalFooter>
-          <button className="cancel" onClick={closeModal}>
+          <button type="button" className="cancel" onClick={closeModal}>
             Cancelar
           </button>
           {currentStep > 1 && (
-            <button className="back" onClick={previousStep}>
+            <button type="button" className="back" onClick={previousStep}>
               Voltar
             </button>
           )}
-          <button className="next" onClick={handleNextClick}>
-            {currentStep === 3 ? "Concluir" : "Próximo"}
+          <button type="submit" form="bankForm" className="next">
+            {isLastStep ? "Concluir" : "Próximo"}
           </button>
         </ModalFooter>
       </ModalContainer>

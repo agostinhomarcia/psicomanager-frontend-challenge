@@ -8,11 +8,12 @@ import {
   FormGroup,
   InputField,
   SelectField,
-  ErrorMessage,
 } from "./styles";
 import { bankAccountSchema } from "../../../schemas/bankAccountSchema";
 import { BankAccountFormData } from "../../../schemas/bankAccountSchema";
 import { usePsicoBank } from "../../../contexts/PsicoBankContext";
+import InputMask from "react-input-mask";
+import { toast } from "react-toastify";
 
 export function Step1BankAccount() {
   const { nextStep } = usePsicoBank();
@@ -21,7 +22,7 @@ export function Step1BankAccount() {
     register,
     watch,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitted },
   } = useForm<BankAccountFormData>({
     resolver: zodResolver(bankAccountSchema),
     defaultValues: {
@@ -32,8 +33,33 @@ export function Step1BankAccount() {
 
   const personType = watch("personType");
 
+  const onSubmit = (data: BankAccountFormData) => {
+    console.log("Form data:", data);
+    nextStep();
+  };
+
+  const onError = () => {
+    toast.error("⚠️ Atenção Os campos obrigatórios não foram preenchidos", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+      style: {
+        backgroundColor: "#fff",
+        color: "#F44336",
+        width: "278px",
+        height: "104px",
+      },
+    });
+  };
+
+  const showErrors = isSubmitted && Object.keys(errors).length > 0;
+
   return (
-    <>
+    <form id="bankForm" onSubmit={handleSubmit(onSubmit, onError)}>
       <FormHeader>
         <h2>Preencha os itens a seguir para configurar o PsicoBank</h2>
         <WarningBox>
@@ -75,15 +101,17 @@ export function Step1BankAccount() {
               name="bank"
               control={control}
               render={({ field }) => (
-                <SelectField {...field}>
+                <SelectField {...field} hasError={showErrors}>
                   <option value="">Selecione</option>
-                  <option value="itau">Itaú</option>
+                  <option value="bb">Banco do Brasil</option>
                   <option value="bradesco">Bradesco</option>
-                  <option value="santander">Santander</option>
+                  <option value="caixa">Caixa Econômica</option>
+                  <option value="Itaú">Itaú</option>
+                  <option value="Inter">Inter</option>
+                  <option value="Santander">Santander</option>
                 </SelectField>
               )}
             />
-            {errors.bank && <ErrorMessage>{errors.bank.message}</ErrorMessage>}
           </FormGroup>
 
           <FormGroup>
@@ -92,26 +120,24 @@ export function Step1BankAccount() {
               name="accountType"
               control={control}
               render={({ field }) => (
-                <SelectField {...field}>
+                <SelectField {...field} hasError={showErrors}>
                   <option value="">Selecione</option>
-                  <option value="corrente">Conta Corrente</option>
-                  <option value="poupanca">Conta Poupança</option>
+                  <option value="Conta Corrente">Conta Corrente</option>
+                  <option value="Conta Poupança">Conta Poupança</option>
                 </SelectField>
               )}
             />
-            {errors.accountType && (
-              <ErrorMessage>{errors.accountType.message}</ErrorMessage>
-            )}
           </FormGroup>
         </FormRow>
 
         <FormRow>
           <FormGroup>
             <label>Agência *</label>
-            <InputField {...register("agency")} placeholder="Digite aqui" />
-            {errors.agency && (
-              <ErrorMessage>{errors.agency.message}</ErrorMessage>
-            )}
+            <InputField
+              {...register("agency")}
+              placeholder="Digite aqui"
+              hasError={showErrors}
+            />
           </FormGroup>
 
           <FormGroup>
@@ -119,10 +145,8 @@ export function Step1BankAccount() {
             <InputField
               {...register("accountNumber")}
               placeholder="Digite aqui"
+              hasError={showErrors}
             />
-            {errors.accountNumber && (
-              <ErrorMessage>{errors.accountNumber.message}</ErrorMessage>
-            )}
           </FormGroup>
         </FormRow>
 
@@ -133,7 +157,7 @@ export function Step1BankAccount() {
               name="personType"
               control={control}
               render={({ field }) => (
-                <SelectField {...field}>
+                <SelectField {...field} hasError={showErrors}>
                   <option value="PF">Pessoa Física</option>
                   <option value="PJ">Pessoa Jurídica</option>
                 </SelectField>
@@ -144,16 +168,36 @@ export function Step1BankAccount() {
           {personType === "PF" ? (
             <FormGroup>
               <label>CPF *</label>
-              <InputField {...register("cpf")} placeholder="Digite aqui" />
-              {errors.cpf && <ErrorMessage>{errors.cpf.message}</ErrorMessage>}
+              <Controller
+                name="cpf"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    as={InputMask}
+                    mask="999.999.999-99"
+                    placeholder="Digite aqui"
+                    hasError={showErrors}
+                    {...field}
+                  />
+                )}
+              />
             </FormGroup>
           ) : (
             <FormGroup>
               <label>CNPJ *</label>
-              <InputField {...register("cnpj")} placeholder="Digite aqui" />
-              {errors.cnpj && (
-                <ErrorMessage>{errors.cnpj.message}</ErrorMessage>
-              )}
+              <Controller
+                name="cnpj"
+                control={control}
+                render={({ field }) => (
+                  <InputField
+                    as={InputMask}
+                    mask="99.999.999/9999-99"
+                    placeholder="Digite aqui"
+                    hasError={showErrors}
+                    {...field}
+                  />
+                )}
+              />
             </FormGroup>
           )}
         </FormRow>
@@ -162,17 +206,23 @@ export function Step1BankAccount() {
           <FormGroup>
             <label>Nome completo *</label>
             <InputField {...register("fullName")} placeholder="Digite aqui" />
-            {errors.fullName && (
-              <ErrorMessage>{errors.fullName.message}</ErrorMessage>
-            )}
           </FormGroup>
 
           <FormGroup>
             <label>Telefone *</label>
-            <InputField {...register("phone")} placeholder="Digite aqui" />
-            {errors.phone && (
-              <ErrorMessage>{errors.phone.message}</ErrorMessage>
-            )}
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field }) => (
+                <InputField
+                  as={InputMask}
+                  mask="(99) 99999-9999"
+                  placeholder="Digite aqui"
+                  hasError={showErrors}
+                  {...field}
+                />
+              )}
+            />
           </FormGroup>
         </FormRow>
 
@@ -180,7 +230,6 @@ export function Step1BankAccount() {
           <FormGroup>
             <label>CEP *</label>
             <InputField {...register("cep")} placeholder="Digite aqui" />
-            {errors.cep && <ErrorMessage>{errors.cep.message}</ErrorMessage>}
           </FormGroup>
 
           <FormGroup>
@@ -191,19 +240,26 @@ export function Step1BankAccount() {
               render={({ field }) => (
                 <SelectField {...field}>
                   <option value="">Selecione</option>
-                  {/* Adicionar lista de estados */}
+                  <option value="AC">Acre</option>
+                  <option value="AL">Alagoas</option>
+                  <option value="AP">Amapá</option>
+                  <option value="AM">Amazonas</option>
+                  <option value="BA">Bahia</option>
+                  <option value="CE">Ceará</option>
+                  <option value="DF">Distrito Federal</option>
+                  <option value="ES">Espírito Santo</option>
+                  <option value="GO">Goiás</option>
+                  <option value="MA">Maranhão</option>
+                  <option value="MT">Mato Grosso</option>
+                  <option value="MS">Mato Grosso do Sul</option>
                 </SelectField>
               )}
             />
-            {errors.state && (
-              <ErrorMessage>{errors.state.message}</ErrorMessage>
-            )}
           </FormGroup>
 
           <FormGroup>
             <label>Cidade *</label>
             <InputField {...register("city")} placeholder="Digite aqui" />
-            {errors.city && <ErrorMessage>{errors.city.message}</ErrorMessage>}
           </FormGroup>
         </FormRow>
 
@@ -211,20 +267,14 @@ export function Step1BankAccount() {
           <FormGroup>
             <label>Endereço *</label>
             <InputField {...register("address")} placeholder="Digite aqui" />
-            {errors.address && (
-              <ErrorMessage>{errors.address.message}</ErrorMessage>
-            )}
           </FormGroup>
 
           <FormGroup>
             <label>Número *</label>
             <InputField {...register("number")} placeholder="Digite aqui" />
-            {errors.number && (
-              <ErrorMessage>{errors.number.message}</ErrorMessage>
-            )}
           </FormGroup>
         </FormRow>
       </FormContainer>
-    </>
+    </form>
   );
 }
