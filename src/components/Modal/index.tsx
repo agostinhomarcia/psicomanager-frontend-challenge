@@ -3,24 +3,18 @@ import {
   ModalContainer,
   ModalHeader,
   StepsContainer,
-  Step,
-  StepIndicator,
-  StepLabel,
-  StepConnector,
   CloseButton,
   ModalContent,
   ModalFooter,
+  ProgressBarContainer,
+  ProgressStep,
+  StepIcon,
+  StepText,
 } from "./styles";
 import { usePsicoBank } from "../../contexts/PsicoBankContext";
 import { Step1BankAccount } from "../Steps/Step1BankAccount/Step1BankAccount";
 import { Step2MessageConfig } from "../Steps/Step2MessageConfig/index";
 import { Step3PaymentConfig } from "../Steps/Step3PaymentConfig";
-
-const steps = [
-  "Cadastrar uma conta",
-  "Canais de envio e Mensagem de cobrança",
-  "Forma de pagamento da cobrança",
-];
 
 export function PsicoBank() {
   const { isModalOpen, currentStep, closeModal, previousStep } = usePsicoBank();
@@ -44,17 +38,43 @@ export function PsicoBank() {
         </ModalHeader>
 
         <StepsContainer>
-          {steps.map((label, index) => (
-            <Step key={label}>
-              <StepIndicator isActive={currentStep >= index + 1}>
-                {index + 1}
-              </StepIndicator>
-              <StepLabel isActive={currentStep >= index + 1}>{label}</StepLabel>
-              {index < steps.length - 1 && (
-                <StepConnector isActive={currentStep > index + 1} />
-              )}
-            </Step>
-          ))}
+          <ProgressBarContainer>
+            <ProgressStep isActive={currentStep >= 1}>
+              <StepIcon isActive={currentStep >= 1} isFirst={true}>
+                <img
+                  src="../../../public/imagens/progress1.png"
+                  alt="Cadastrar conta"
+                />
+              </StepIcon>
+              <StepText isActive={currentStep >= 1}>
+                Cadastrar uma conta
+              </StepText>
+            </ProgressStep>
+
+            <ProgressStep isActive={currentStep >= 2}>
+              <StepIcon isActive={currentStep >= 2} isFirst={false}>
+                <img
+                  src="../../../public/imagens/progress2.png"
+                  alt="Canais de envio"
+                />
+              </StepIcon>
+              <StepText isActive={currentStep >= 2}>
+                Canais de envio e Mensagem de cobrança
+              </StepText>
+            </ProgressStep>
+
+            <ProgressStep isActive={currentStep === 3}>
+              <StepIcon isActive={currentStep === 3} isFirst={false}>
+                <img
+                  src="../../../public/imagens/progress2.png"
+                  alt="Forma de pagamento"
+                />
+              </StepIcon>
+              <StepText isActive={currentStep === 3}>
+                Forma de pagamento da cobrança
+              </StepText>
+            </ProgressStep>
+          </ProgressBarContainer>
         </StepsContainer>
 
         <ModalContent>

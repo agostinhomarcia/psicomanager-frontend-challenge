@@ -39,7 +39,7 @@ export function Step1BankAccount() {
   };
 
   const onError = () => {
-    toast.error("⚠️ Atenção Os campos obrigatórios não foram preenchidos", {
+    toast.error("Atenção Os campos obrigatórios não foram preenchidos", {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,

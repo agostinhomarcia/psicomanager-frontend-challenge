@@ -95,7 +95,6 @@ export const ModalFooter = styled.div`
   justify-content: flex-end;
   gap: 12px;
   padding: 24px;
-  border-top: 1px solid #eee;
 
   button {
     padding: 8px 16px;
@@ -139,47 +138,112 @@ export const CloseButton = styled.button`
 
 export const StepsContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  padding: 24px 40px;
-  background: #f8f9fa;
-
-  @media (max-width: 768px) {
-    padding: 16px;
-    overflow-x: auto;
-    gap: 16px;
-  }
+  align-items: center;
+  padding: 16px 40px;
+  background: #fff;
 `;
 
 export const Step = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 180px;
 `;
 
-interface StepProps {
+export const StepIndicator = styled.div<{
   isActive: boolean;
-}
-
-export const StepIndicator = styled.div<StepProps>`
-  width: 24px;
-  height: 24px;
+  isCompleted: boolean;
+}>`
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${(props) => (props.isActive ? "#96A5FF" : "#E5E7EB")};
-  color: ${(props) => (props.isActive ? "white" : "#6B7280")};
-  font-weight: 600;
+  background: ${(props) =>
+    props.isCompleted ? "#334094" : props.isActive ? "#334094" : "#F3F4F6"};
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: ${(props) =>
+      props.isCompleted || props.isActive ? "#fff" : "#6B7280"};
+  }
 `;
 
-export const StepLabel = styled.span<StepProps>`
-  color: ${(props) => (props.isActive ? "#111827" : "#6B7280")};
+export const StepLabel = styled.span<{
+  isActive: boolean;
+  isCompleted: boolean;
+}>`
+  color: ${(props) =>
+    props.isCompleted || props.isActive ? "#334094" : "#6B7280"};
   font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
 `;
 
-export const StepConnector = styled.div<StepProps>`
+export const StepConnector = styled.div<{ isCompleted: boolean }>`
   flex: 1;
   height: 2px;
-  background: ${(props) => (props.isActive ? "#96A5FF" : "#E5E7EB")};
+  background: ${(props) => (props.isCompleted ? "#334094" : "#E5E7EB")};
   margin: 0 8px;
+`;
+
+export const ProgressBarContainer = styled.div`
+  width: 816px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background: #fff;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 37%;
+    left: 80px;
+    right: 80px;
+    height: 1px;
+    background: #eff0f0;
+    z-index: 0;
+    transform: translateY(-10px);
+  }
+`;
+
+export const ProgressStep = styled.div<{ isActive: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+  padding-top: 8px;
+`;
+
+export const StepIcon = styled.div<{ isActive: boolean; isFirst?: boolean }>`
+  width: ${(props) => (props.isFirst ? "24px" : "16px")};
+  height: ${(props) => (props.isFirst ? "24px" : "16px")};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${(props) => (props.isActive ? "#fff" : "#F3F4F6")};
+  border-radius: 50%;
+  margin-bottom: 4px;
+
+  img {
+    width: ${(props) => (props.isFirst ? "16px" : "8px")};
+    height: ${(props) => (props.isFirst ? "16px" : "8px")};
+    opacity: ${(props) => (props.isActive ? "1" : "0.4")};
+  }
+`;
+
+export const StepText = styled.span<{ isActive: boolean }>`
+  font-size: 12px;
+  color: ${(props) => (props.isActive ? "#334094" : "#6B7280")};
+  font-weight: 500;
+  text-align: center;
+  max-width: 100px;
+  line-height: 1.2;
 `;
