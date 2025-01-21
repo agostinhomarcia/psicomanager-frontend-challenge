@@ -82,17 +82,19 @@ export const InputField = styled.input.attrs<{ as?: string }>((props) => ({
   width: 100%;
   height: 40px;
   padding: 8px 12px;
-  border: 1px solid ${(props) => (props.hasError ? "#F44336" : "#ddd")};
+  border: 1px solid ${(props) => (props.hasError ? "#DC2626" : "#E5E7EB")};
   border-radius: 4px;
   font-size: 14px;
+  color: #374151;
 
   &::placeholder {
-    color: #999;
+    color: #9ca3af;
   }
 
   &:focus {
     outline: none;
-    border-color: ${(props) => (props.hasError ? "#F44336" : "#007bff")};
+    border-color: ${(props) => (props.hasError ? "#DC2626" : "#334094")};
+    box-shadow: ${(props) => (props.hasError ? "0 0 0 1px #DC2626" : "none")};
   }
 `;
 
@@ -100,13 +102,15 @@ export const SelectField = styled.select<{ hasError?: boolean }>`
   width: 100%;
   height: 40px;
   padding: 8px 12px;
-  border: 1px solid ${(props) => (props.hasError ? "#F44336" : "#ddd")};
+  border: 1px solid ${(props) => (props.hasError ? "#DC2626" : "#E5E7EB")};
   border-radius: 4px;
   font-size: 14px;
   background: white;
+  color: #374151;
 
   &:focus {
     outline: none;
-    border-color: ${(props) => (props.hasError ? "#F44336" : "#007bff")};
+    border-color: ${(props) => (props.hasError ? "#DC2626" : "#334094")};
+    box-shadow: ${(props) => (props.hasError ? "0 0 0 1px #DC2626" : "none")};
   }
 `;

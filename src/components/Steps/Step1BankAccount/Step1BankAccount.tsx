@@ -205,7 +205,11 @@ export function Step1BankAccount() {
         <FormRow>
           <FormGroup>
             <label>Nome completo *</label>
-            <InputField {...register("fullName")} placeholder="Digite aqui" />
+            <InputField
+              {...register("fullName")}
+              placeholder="Digite aqui"
+              hasError={showErrors}
+            />
           </FormGroup>
 
           <FormGroup>
@@ -229,7 +233,11 @@ export function Step1BankAccount() {
         <FormRow>
           <FormGroup>
             <label>CEP *</label>
-            <InputField {...register("cep")} placeholder="Digite aqui" />
+            <InputField
+              {...register("cep")}
+              placeholder="Digite aqui"
+              hasError={showErrors}
+            />
           </FormGroup>
 
           <FormGroup>
@@ -238,7 +246,7 @@ export function Step1BankAccount() {
               name="state"
               control={control}
               render={({ field }) => (
-                <SelectField {...field}>
+                <SelectField {...field} hasError={showErrors}>
                   <option value="">Selecione</option>
                   <option value="AC">Acre</option>
                   <option value="AL">Alagoas</option>
@@ -259,19 +267,31 @@ export function Step1BankAccount() {
 
           <FormGroup>
             <label>Cidade *</label>
-            <InputField {...register("city")} placeholder="Digite aqui" />
+            <InputField
+              {...register("city")}
+              placeholder="Digite aqui"
+              hasError={showErrors}
+            />
           </FormGroup>
         </FormRow>
 
         <FormRow>
           <FormGroup>
             <label>Endereço *</label>
-            <InputField {...register("address")} placeholder="Digite aqui" />
+            <InputField
+              {...register("address")}
+              placeholder="Digite aqui"
+              hasError={showErrors}
+            />
           </FormGroup>
 
           <FormGroup>
             <label>Número *</label>
-            <InputField {...register("number")} placeholder="Digite aqui" />
+            <InputField
+              {...register("number")}
+              placeholder="Digite aqui"
+              hasError={showErrors}
+            />
           </FormGroup>
         </FormRow>
       </FormContainer>
