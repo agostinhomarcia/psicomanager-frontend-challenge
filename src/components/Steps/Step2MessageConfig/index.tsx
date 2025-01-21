@@ -97,7 +97,7 @@ export function Step2MessageConfig() {
               )}
             />
             <button type="button" onClick={handleInsertMarking}>
-              Inserir
+              + Inserir
             </button>
           </DynamicMarkingContainer>
         </FormGroup>

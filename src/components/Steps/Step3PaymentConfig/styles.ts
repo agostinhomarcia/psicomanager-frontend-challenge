@@ -30,7 +30,7 @@ export const InfoBox = styled.div`
   background: #ecf5fe;
   border-radius: 4px;
   padding: 16px;
-  color: #2196f3;
+  color: #334094;
   font-size: 14px;
   line-height: 1.5;
 `;
@@ -48,6 +48,7 @@ export const CheckboxContainer = styled.label`
     cursor: pointer;
     border: 1px solid #ddd;
     border-radius: 2px;
+    accent-color: #334094;
   }
 
   span {
@@ -89,7 +90,7 @@ export const ErrorMessage = styled.div`
   top: 0;
   right: 0;
   background: #fff3f3;
-  border: 1px solid #ff4444;
+  border: 1px solid #f44336;
   border-radius: 4px;
   padding: 12px;
   margin: 16px;
@@ -98,11 +99,11 @@ export const ErrorMessage = styled.div`
   gap: 8px;
 
   svg {
-    color: #ff4444;
+    color: #f44336;
   }
 
   span {
-    color: #ff4444;
+    color: #f44336;
     font-size: 14px;
   }
 `;
@@ -112,7 +113,7 @@ export const SuccessMessage = styled.div`
   top: 0;
   right: 0;
   background: #f0fff0;
-  border: 1px solid #4caf50;
+  border: 1px solid #28a745;
   border-radius: 4px;
   padding: 12px;
   margin: 16px;
@@ -121,11 +122,11 @@ export const SuccessMessage = styled.div`
   gap: 8px;
 
   svg {
-    color: #4caf50;
+    color: #28a745;
   }
 
   span {
-    color: #4caf50;
+    color: #28a745;
     font-size: 14px;
   }
 `;

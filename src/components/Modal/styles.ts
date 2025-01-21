@@ -108,8 +108,8 @@ export const ModalFooter = styled.div`
     }
 
     &.next {
-      background: #007bff;
-      color: white;
+      background: #334094;
+      color: #d5dbff;
       border: none;
     }
 
@@ -167,7 +167,7 @@ export const StepIndicator = styled.div<StepProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${(props) => (props.isActive ? "#0047B6" : "#E5E7EB")};
+  background: ${(props) => (props.isActive ? "#96A5FF" : "#E5E7EB")};
   color: ${(props) => (props.isActive ? "white" : "#6B7280")};
   font-weight: 600;
 `;
@@ -180,6 +180,6 @@ export const StepLabel = styled.span<StepProps>`
 export const StepConnector = styled.div<StepProps>`
   flex: 1;
   height: 2px;
-  background: ${(props) => (props.isActive ? "#0047B6" : "#E5E7EB")};
+  background: ${(props) => (props.isActive ? "#96A5FF" : "#E5E7EB")};
   margin: 0 8px;
 `;

@@ -27,6 +27,21 @@ export const FormGroup = styled.div`
   }
 `;
 
+export const InsertButton = styled.button`
+  background-color: #fff;
+  border: 1px solid #334094;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+  height: 28px;
+
+  &:hover {
+    background: #f5f5f5;
+  }
+`;
+
 export const InputField = styled.input`
   width: 100%;
   height: 40px;
@@ -61,17 +76,15 @@ export const DynamicMarkingContainer = styled.div`
   align-items: center;
 
   button {
-    padding: 8px 16px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
+    width: 133px;
+    height: 32px;
+    padding: 4px 32px 4px 32px;
+    background: #fff;
+    border: 1px solid #334094;
+    color: #334094;
+    border-radius: 8px;
     cursor: pointer;
     white-space: nowrap;
-
-    &:hover {
-      background: #0056b3;
-    }
   }
 `;
 
