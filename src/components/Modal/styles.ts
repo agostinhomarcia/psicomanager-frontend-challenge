@@ -16,52 +16,74 @@ export const ModalOverlay = styled.div`
 export const ModalContainer = styled.div`
   background: white;
   border-radius: 8px;
-  width: 90%;
+  width: 100%;
   max-width: 800px;
-  max-height: 90vh;
+  min-height: 200px;
+  padding: 24px;
+  position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  gap: 24px;
 `;
 
 export const ModalHeader = styled.div`
-  padding: 24px;
-  border-bottom: 1px solid #e5e7eb;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   h2 {
-    font-size: 20px;
+    font-size: 18px;
     color: #111827;
-    font-weight: 600;
+  }
+`;
+
+export const ModalContent = styled.div`
+  flex: 1;
+  overflow-y: auto;
+`;
+
+export const ModalFooter = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 24px;
+
+  button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+
+    &.cancel {
+      background: transparent;
+      color: #6b7280;
+    }
+
+    &.next {
+      background: #0047b6;
+      color: white;
+    }
   }
 `;
 
 export const CloseButton = styled.button`
-  background: none;
+  background: transparent;
   border: none;
   font-size: 24px;
   cursor: pointer;
   color: #6b7280;
-
-  &:hover {
-    color: #374151;
-  }
 `;
 
 export const StepsContainer = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 24px;
-  position: relative;
+  padding: 0 24px;
 `;
 
 export const Step = styled.div`
   display: flex;
   align-items: center;
-  flex: 1;
-  position: relative;
+  gap: 8px;
 `;
 
 interface StepProps {
@@ -69,84 +91,25 @@ interface StepProps {
 }
 
 export const StepIndicator = styled.div<StepProps>`
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: ${(props) => (props.isActive ? "#0047B6" : "#E5E7EB")};
-  color: ${(props) => (props.isActive ? "white" : "#6B7280")};
   display: flex;
   align-items: center;
   justify-content: center;
+  background: ${(props) => (props.isActive ? "#0047B6" : "#E5E7EB")};
+  color: ${(props) => (props.isActive ? "white" : "#6B7280")};
   font-weight: 600;
-  transition: all 0.2s;
 `;
 
 export const StepLabel = styled.span<StepProps>`
-  margin-left: 12px;
-  color: ${(props) => (props.isActive ? "#0047B6" : "#6B7280")};
-  font-weight: ${(props) => (props.isActive ? "600" : "400")};
+  color: ${(props) => (props.isActive ? "#111827" : "#6B7280")};
   font-size: 14px;
-  transition: all 0.2s;
 `;
 
 export const StepConnector = styled.div<StepProps>`
-  position: absolute;
-  top: 16px;
-  left: calc(50% + 16px);
-  right: calc(-50% + 16px);
+  flex: 1;
   height: 2px;
   background: ${(props) => (props.isActive ? "#0047B6" : "#E5E7EB")};
-  transition: all 0.2s;
-`;
-
-export const ModalContent = styled.div`
-  padding: 24px;
-  overflow-y: auto;
-  flex: 1;
-`;
-
-export const ModalFooter = styled.div`
-  padding: 24px;
-  border-top: 1px solid #e5e7eb;
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-
-  button {
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-
-    &.cancel {
-      background: none;
-      border: 1px solid #e5e7eb;
-      color: #6b7280;
-
-      &:hover {
-        background: #f9fafb;
-      }
-    }
-
-    &.back {
-      background: none;
-      border: 1px solid #0047b6;
-      color: #0047b6;
-
-      &:hover {
-        background: #f0f7ff;
-      }
-    }
-
-    &.next {
-      background: #0047b6;
-      border: none;
-      color: white;
-
-      &:hover {
-        background: #003d9e;
-      }
-    }
-  }
+  margin: 0 8px;
 `;

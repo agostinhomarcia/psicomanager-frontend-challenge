@@ -52,7 +52,7 @@ export function Modal({
           {steps.map((label, index) => (
             <Step key={label}>
               <StepIndicator isActive={currentStep >= index + 1}>
-                {currentStep > index + 1 ? "✓" : index + 1}
+                {index + 1}
               </StepIndicator>
               <StepLabel isActive={currentStep >= index + 1}>{label}</StepLabel>
               {index < steps.length - 1 && (
