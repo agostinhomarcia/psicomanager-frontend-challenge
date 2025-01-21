@@ -1,50 +1,58 @@
-# React + TypeScript + Vite
+# Psicomanager FrontEnd Challenge - PsicoBank
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🎯 Desafio
 
-Currently, two official plugins are available:
+Implementação do fluxo de ativação do PsicoBank no PsicoManager, permitindo que usuários configurem conta bancária e opções de cobrança de forma intuitiva. A solução é responsiva, valida dados em tempo real e segue fielmente o protótipo fornecido.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Stack Utilizada
 
-## Expanding the ESLint configuration
+- TypeScript
+- React (Vite)
+- React-Hook-Form
+- Styled-Components
+- React-quill
+- React-toastify
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🚀 Como Executar
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone o repositório
+2. Instale as dependências com `npm install` ou `yarn install`
+3. Execute o projeto com `npm run dev` ou `yarn dev`
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 📋 Funcionalidades Implementadas
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Geral
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- ✅ Design responsivo (Desktop e Mobile)
+- ✅ Sidebar fixa com seção Financeiro ativa
+- ✅ Modal com 3 etapas de configuração
+- ✅ Validação em tempo real dos campos
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Passo 1: Cadastro de Conta Bancária
+
+- ✅ Wizard interativo
+- ✅ Campos com máscaras e validações
+- ✅ Adaptação para Pessoa Física/Jurídica
+
+### Passo 2: Canais de Envio e Mensagens
+
+- ✅ Editor de texto rico (React Quill)
+- ✅ Marcações dinâmicas
+- ✅ Formatação de texto
+
+### Passo 3: Forma de Pagamento
+
+- ✅ Configuração de métodos de pagamento
+- ✅ Configuração de multas e juros
+- ✅ Flags de sucesso/erro
+
+## 🔍 Pontos Adicionais
+
+- Persistência de dados entre etapas
+- Estados dos componentes (hover, selected, disabled, error)
+- Log de dados no console após conclusão
+- Design fiel ao protótipo Figma
+
+## 🤝 Contribuição
+
+Este projeto foi desenvolvido como parte do desafio técnico do PsicoManager.

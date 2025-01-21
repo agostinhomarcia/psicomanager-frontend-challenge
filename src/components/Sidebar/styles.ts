@@ -2,19 +2,19 @@ import styled from "styled-components";
 
 export const Container = styled.aside`
   width: 90px;
-  height: 712px;
+  height: 100vh;
   background-color: #ffffff;
   border-right: 1px solid #e5e7eb;
-  padding: 4px;
+  padding: 24px 4px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  margin-top: 56px;
 `;
 
 export const MenuList = styled.nav`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 20px;
 `;
 
 interface MenuItemProps {
@@ -27,27 +27,39 @@ export const MenuItem = styled.button<MenuItemProps>`
   align-items: center;
   justify-content: center;
   width: 80px;
-  height: 62px;
-  padding: 12px 16px;
+  height: 70px;
+  padding: 8px;
   border: none;
-  border-radius: 16px;
-  background: ${(props) => (props.isActive ? "#0047B6" : "transparent")};
+  border-radius: 20px;
+  background: ${(props) => (props.isActive ? "#334094" : "transparent")};
   color: ${(props) => (props.isActive ? "#fff" : "#374151")};
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   transition: all 0.2s;
 
   .icon {
-    font-size: 24px;
-    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+
+    img {
+      width: 80px;
+      height: 62px;
+    }
   }
 
   .label {
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
     line-height: 1.2;
+    color: ${(props) => (props.isActive ? "#fff" : "#6B7280")};
   }
 
-  &:hover {
-    background: ${(props) => (props.isActive ? "#0047B6" : "#F3F4F6")};
+  &:disabled {
+    opacity: ${(props) => (props.isActive ? 1 : 0.7)};
+  }
+
+  &:hover:not(:disabled) {
+    background: ${(props) => (props.isActive ? "#334094" : "#F3F4F6")};
   }
 `;
