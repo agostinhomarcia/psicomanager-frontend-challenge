@@ -13,6 +13,7 @@ import {
 } from "./styles";
 import { usePsicoBank } from "../../contexts/PsicoBankContext";
 import { Step1BankAccount } from "../Steps/Step1BankAccount/Step1BankAccount";
+import { Step2MessageConfig } from "../Steps/Step2MessageConfig/index";
 
 const steps = [
   "Cadastrar uma conta",
@@ -51,7 +52,7 @@ export function PsicoBank() {
 
         <ModalContent>
           {currentStep === 1 && <Step1BankAccount />}
-          {/* Add other steps here */}
+          {currentStep === 2 && <Step2MessageConfig />}
         </ModalContent>
 
         <ModalFooter>
