@@ -26,6 +26,8 @@ export const ActivationSection = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+  width: 220px;
+  height: 372px;
   gap: 10px;
 
   img {

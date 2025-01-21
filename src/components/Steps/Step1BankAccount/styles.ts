@@ -56,6 +56,7 @@ export const FormContainer = styled.div`
 export const FormRow = styled.div`
   display: flex;
   gap: 16px;
+  margin-bottom: 16px;
 
   @media (max-width: 768px) {
     flex-direction: column;

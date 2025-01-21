@@ -1,17 +1,19 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  width: 100%;
+  width: 100vw;
+  min-width: 1366px;
   height: 56px;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 0 24px;
   display: flex;
   align-items: center;
-  padding: 0 16px;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 1000;
 `;
 
 export const Logo = styled.div`

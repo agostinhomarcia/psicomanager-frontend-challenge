@@ -16,7 +16,12 @@ export function Home() {
       <Sidebar />
       <Content>
         <ActivationSection>
-          <img src="/imagens/robot-icon.png" alt="Robot Icon" />
+          <img
+            src="/imagens/robot-icon.png"
+            alt="Robot Icon"
+            width={100}
+            height={180}
+          />
           <p>
             Clique no botão para começar a usar os benefícios financeiros do
             PsicoManager
