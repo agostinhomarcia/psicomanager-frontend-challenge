@@ -14,6 +14,7 @@ import {
 import { usePsicoBank } from "../../contexts/PsicoBankContext";
 import { Step1BankAccount } from "../Steps/Step1BankAccount/Step1BankAccount";
 import { Step2MessageConfig } from "../Steps/Step2MessageConfig/index";
+import { Step3PaymentConfig } from "../Steps/Step3PaymentConfig";
 
 const steps = [
   "Cadastrar uma conta",
@@ -27,6 +28,12 @@ export function PsicoBank() {
   if (!isModalOpen) return null;
 
   const isLastStep = currentStep === 3;
+
+  const activeFormId = {
+    1: "bankForm",
+    2: "messageForm",
+    3: "paymentForm",
+  }[currentStep];
 
   return (
     <ModalOverlay>
@@ -53,6 +60,7 @@ export function PsicoBank() {
         <ModalContent>
           {currentStep === 1 && <Step1BankAccount />}
           {currentStep === 2 && <Step2MessageConfig />}
+          {currentStep === 3 && <Step3PaymentConfig />}
         </ModalContent>
 
         <ModalFooter>
@@ -64,7 +72,7 @@ export function PsicoBank() {
               Voltar
             </button>
           )}
-          <button type="submit" form="bankForm" className="next">
+          <button type="submit" form={activeFormId} className="next">
             {isLastStep ? "Concluir" : "Próximo"}
           </button>
         </ModalFooter>

@@ -11,7 +11,7 @@ import {
   DynamicMarkingContainer,
   EditorContainer,
 } from "./styles";
-import { InputField } from "../Step1BankAccount/styles";
+import { InputField } from "../../../components/InputField";
 import downIcon from "../../../../public/imagens/down.png";
 
 interface MessageConfigFormData {
