@@ -9,12 +9,35 @@ export const Container = styled.aside`
   display: flex;
   flex-direction: column;
   margin-top: 56px;
+  position: fixed;
+  left: 0;
+  z-index: 10;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 64px;
+    margin-top: 56px;
+    padding: 8px;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
 `;
 
 export const MenuList = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 0 8px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 interface MenuItemProps {
@@ -61,5 +84,21 @@ export const MenuItem = styled.button<MenuItemProps>`
 
   &:hover:not(:disabled) {
     background: ${(props) => (props.isActive ? "#334094" : "#F3F4F6")};
+  }
+
+  @media (max-width: 768px) {
+    width: 64px;
+    height: 48px;
+    padding: 4px;
+    border-radius: 12px;
+
+    .icon img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .label {
+      font-size: 10px;
+    }
   }
 `;
