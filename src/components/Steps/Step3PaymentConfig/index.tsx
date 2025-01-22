@@ -31,7 +31,7 @@ interface PaymentConfigFormData {
 }
 
 export function Step3PaymentConfig() {
-  const { nextStep } = usePsicoBank();
+  const { closeModal } = usePsicoBank();
   const { control, handleSubmit } = useForm<PaymentConfigFormData>({
     defaultValues: {
       professional: "João Silva",
@@ -70,16 +70,34 @@ export function Step3PaymentConfig() {
       return;
     }
 
-    toast.success("Configurações salvas com sucesso!", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme: "light",
-      onClose: () => nextStep(),
-    });
+    closeModal();
+
+    setTimeout(() => {
+      toast.success(
+        <div>
+          <div>Sucesso!</div>
+          <div>PsicoBank ativado!</div>
+        </div>,
+        {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          style: {
+            width: "278px",
+            height: "105px",
+            background: "#E6F4EA",
+            border: "1px solid #28A745",
+            color: "#28A745",
+            fontSize: "14px",
+            whiteSpace: "pre-line",
+          },
+        }
+      );
+    }, 100);
   };
 
   return (
