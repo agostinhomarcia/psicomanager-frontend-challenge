@@ -189,26 +189,41 @@ export const StepConnector = styled.div<{ isCompleted: boolean }>`
   margin: 0 8px;
 `;
 
-export const ProgressBarContainer = styled.div`
-  width: 816px;
+export const ProgressBarContainer = styled.div<{ currentStep: number }>`
+  width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 40px;
+  padding: 0 80px;
   background: #fff;
   position: relative;
 
   &::after {
     content: "";
     position: absolute;
-    top: 37%;
-    left: 80px;
-    right: 80px;
-    height: 1px;
-    background: #eff0f0;
+    top: 10%;
+    left: 140px;
+    right: 140px;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      #96a5ff 0%,
+      #96a5ff
+        ${(props) => {
+          if (props.currentStep === 1) return "0%";
+          if (props.currentStep === 2) return "50%";
+          return "100%";
+        }},
+      #dfe3e8
+        ${(props) => {
+          if (props.currentStep === 1) return "0%";
+          if (props.currentStep === 2) return "50%";
+          return "100%";
+        }},
+      #dfe3e8 100%
+    );
     z-index: 0;
-    transform: translateY(-10px);
   }
 `;
 
@@ -216,34 +231,34 @@ export const ProgressStep = styled.div<{ isActive: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   position: relative;
   z-index: 1;
-  padding-top: 8px;
 `;
 
 export const StepIcon = styled.div<{ isActive: boolean; isFirst?: boolean }>`
-  width: ${(props) => (props.isFirst ? "24px" : "16px")};
-  height: ${(props) => (props.isFirst ? "24px" : "16px")};
+  width: ${(props) => (props.isFirst ? "32px" : "24px")};
+  height: ${(props) => (props.isFirst ? "32px" : "24px")};
   display: flex;
   align-items: center;
   justify-content: center;
   background: ${(props) => (props.isActive ? "#fff" : "#F3F4F6")};
   border-radius: 50%;
-  margin-bottom: 4px;
+  border: 2px solid ${(props) => (props.isActive ? "#96A5FF" : "#DFE3E8")};
+  margin-top: ${(props) => (props.isFirst ? "-16px" : "0")};
 
   img {
-    width: ${(props) => (props.isFirst ? "16px" : "8px")};
-    height: ${(props) => (props.isFirst ? "16px" : "8px")};
+    width: ${(props) => (props.isFirst ? "20px" : "12px")};
+    height: ${(props) => (props.isFirst ? "20px" : "12px")};
     opacity: ${(props) => (props.isActive ? "1" : "0.4")};
   }
 `;
 
 export const StepText = styled.span<{ isActive: boolean }>`
-  font-size: 12px;
-  color: ${(props) => (props.isActive ? "#334094" : "#6B7280")};
-  font-weight: 500;
+  font-size: 14px;
+  color: ${(props) => (props.isActive ? "#96A5FF" : "#6B7280")};
+  font-weight: ${(props) => (props.isActive ? "600" : "500")};
   text-align: center;
-  max-width: 100px;
-  line-height: 1.2;
+  max-width: 120px;
+  line-height: 1.3;
 `;

@@ -38,7 +38,7 @@ export function PsicoBank() {
         </ModalHeader>
 
         <StepsContainer>
-          <ProgressBarContainer>
+          <ProgressBarContainer currentStep={currentStep}>
             <ProgressStep isActive={currentStep >= 1}>
               <StepIcon isActive={currentStep >= 1} isFirst={true}>
                 <img
