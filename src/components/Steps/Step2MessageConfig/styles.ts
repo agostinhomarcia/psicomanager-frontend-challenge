@@ -3,19 +3,19 @@ import styled from "styled-components";
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 24px;
+  gap: 8px;
+  padding: 16px;
 `;
 
 export const FormHeader = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   margin-top: 24px;
 `;
 
 export const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   position: relative;
 
   img {
@@ -96,10 +96,83 @@ export const EditorContainer = styled.div`
   .ql-toolbar {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    background-color: #f8f9fa;
+    border-color: #dfe3e8;
+    padding: 4px 8px;
   }
 
   .ql-container {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
+    border-color: #dfe3e8;
+  }
+
+  .ql-toolbar button {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin: 0 2px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #e9ecef;
+    }
+
+    &.ql-active {
+      background-color: #e9ecef;
+    }
+
+    svg {
+      color: #6c757d;
+    }
+  }
+
+  .ql-formats {
+    margin-right: 8px;
+    border-right: 1px solid #dfe3e8;
+    padding-right: 8px;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  .ql-undo,
+  .ql-redo {
+    color: #6c757d;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      color: #495057;
+    }
+  }
+
+  .ql-list,
+  .ql-bullet {
+    color: #6c757d;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      color: #495057;
+    }
+  }
+
+  .ql-stroke {
+    stroke: currentColor;
+  }
+
+  .ql-fill {
+    fill: currentColor;
   }
 `;

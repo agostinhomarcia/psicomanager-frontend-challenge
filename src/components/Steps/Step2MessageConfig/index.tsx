@@ -20,15 +20,59 @@ interface MessageConfigFormData {
   messageContent: string;
 }
 
+interface QuillInstance {
+  quill: {
+    history: {
+      undo: () => void;
+      redo: () => void;
+    };
+  };
+}
+
+const icons = ReactQuill.Quill.import("ui/icons");
+icons["undo"] = `<svg viewbox="0 0 18 18">
+  <path fill="currentColor" d="M12.5,8.5c0,0-4-3.6-4-3.6c-0.3-0.3-0.7-0.3-1,0c-0.3,0.3-0.3,0.7,0,1l2.9,2.9H5.5c-1.7,0-3,1.3-3,3v4 c0,0.6,0.4,1,1,1s1-0.4,1-1v-4c0-0.6,0.4-1,1-1h4.9L7.5,14.1c-0.3,0.3-0.3,0.7,0,1c0.1,0.1,0.3,0.2,0.5,0.2s0.4-0.1,0.5-0.2 l4-3.6C13.1,11,13.1,9,12.5,8.5z"/>
+</svg>`;
+
+icons["redo"] = `<svg viewbox="0 0 18 18">
+  <path fill="currentColor" d="M5.5,8.5c0,0,4-3.6,4-3.6c0.3-0.3,0.7-0.3,1,0c0.3,0.3,0.3,0.7,0,1L7.6,8.9h4.9c1.7,0,3,1.3,3,3v4 c0,0.6-0.4,1-1,1s-1-0.4-1-1v-4c0-0.6-0.4-1-1-1H7.6l2.9,2.9c0.3,0.3,0.3,0.7,0,1c-0.1,0.1-0.3,0.2-0.5,0.2s-0.4-0.1-0.5-0.2 l-4-3.6C4.9,11,4.9,9,5.5,8.5z"/>
+</svg>`;
+
+const Quill = ReactQuill.Quill;
+const Parchment = Quill.import("parchment");
+
+class UndoClass extends Parchment.Embed {}
+UndoClass.blotName = "undo";
+Quill.register("formats/undo", UndoClass);
+
+class RedoClass extends Parchment.Embed {}
+RedoClass.blotName = "redo";
+Quill.register("formats/redo", RedoClass);
+
 const modules = {
-  toolbar: [
-    ["undo", "redo"],
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-    ["bold", "italic"],
-    [{ align: [] }],
-    ["list", "bullet"],
-    ["link"],
-  ],
+  toolbar: {
+    container: [
+      ["undo", "redo"],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ["bold", "italic"],
+      [{ align: [] }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link"],
+    ],
+    handlers: {
+      undo: function (this: QuillInstance) {
+        this.quill.history.undo();
+      },
+      redo: function (this: QuillInstance) {
+        this.quill.history.redo();
+      },
+    },
+  },
+  history: {
+    delay: 500,
+    maxStack: 100,
+    userOnly: true,
+  },
 };
 
 export function Step2MessageConfig() {
