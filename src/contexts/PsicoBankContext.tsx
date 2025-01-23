@@ -15,6 +15,11 @@ const PsicoBankContext = createContext({} as PsicoBankContextData);
 export function PsicoBankProvider({ children }: { children: ReactNode }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+  const [formData] = useState({
+    dadosBancarios: {},
+    mensagemCobranca: {},
+    configuracaoCobranca: {},
+  });
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -35,11 +40,9 @@ export function PsicoBankProvider({ children }: { children: ReactNode }) {
   };
 
   const handleSubmit = () => {
-    // Implement form submission logic here
+    console.log("Dados do formulário:", formData);
     closeModal();
-    // Show success message
   };
-
   return (
     <PsicoBankContext.Provider
       value={{
