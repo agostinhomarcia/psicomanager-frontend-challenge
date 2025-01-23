@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface MenuItemProps {
+  isActive?: boolean;
+}
+
 export const Container = styled.aside`
   width: 90px;
   height: 100vh;
@@ -39,10 +43,6 @@ export const MenuList = styled.nav`
     }
   }
 `;
-
-interface MenuItemProps {
-  isActive?: boolean;
-}
 
 export const MenuItem = styled.button<MenuItemProps>`
   display: flex;
