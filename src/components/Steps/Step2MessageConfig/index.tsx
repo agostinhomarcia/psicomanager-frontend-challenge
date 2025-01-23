@@ -13,12 +13,7 @@ import {
 } from "./styles";
 import { InputField } from "../../../components/InputField";
 import downIcon from "../../../../public/imagens/down.png";
-
-interface MessageConfigFormData {
-  professional: string;
-  dynamicMarking: string;
-  messageContent: string;
-}
+import { MessageConfigFormData } from "../../../types/form";
 
 interface QuillInstance {
   quill: {

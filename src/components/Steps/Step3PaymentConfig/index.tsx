@@ -14,21 +14,7 @@ import { InputField } from "../../../components/InputField";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { AlertTriangle, CheckCircle } from "lucide-react";
-
-interface PaymentConfigFormData {
-  professional: string;
-  paymentMethods: {
-    pix: boolean;
-    creditCard: boolean;
-    bankSlip: boolean;
-  };
-  fineConfig: {
-    chargeFine: boolean;
-    finePercentage: string;
-    chargeInterest: boolean;
-    interestValue: string;
-  };
-}
+import { PaymentConfigFormData } from "../../../types/form";
 
 export function Step3PaymentConfig() {
   const { closeModal } = usePsicoBank();
