@@ -76,18 +76,20 @@ const modules = {
 };
 
 export function Step2MessageConfig() {
-  const { nextStep } = usePsicoBank();
+  const { nextStep, formData, updateFormData } = usePsicoBank();
   const { control, handleSubmit, watch, setValue } =
     useForm<MessageConfigFormData>({
       defaultValues: {
         professional: "João Silva",
         messageContent:
           "Olá {NOME_CLIENTE}! Estou te mandando um link no qual você consegue ver a melhor forma de pagamento das nossas sessões.\nObrigado!",
+        ...formData.step2,
       },
     });
 
   const onSubmit = (data: MessageConfigFormData) => {
     console.log(data);
+    updateFormData("step2", data);
     nextStep();
   };
 

@@ -1,25 +1,26 @@
 import { createContext, useContext, useState, ReactNode } from "react";
-
-interface PsicoBankContextData {
-  isModalOpen: boolean;
-  currentStep: number;
-  openModal: () => void;
-  closeModal: () => void;
-  nextStep: () => void;
-  previousStep: () => void;
-  handleSubmit: () => void;
-}
+import { FormData, PsicoBankContextData } from "../types/psicoBank";
 
 const PsicoBankContext = createContext({} as PsicoBankContextData);
 
 export function PsicoBankProvider({ children }: { children: ReactNode }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData] = useState({
-    dadosBancarios: {},
-    mensagemCobranca: {},
-    configuracaoCobranca: {},
+  const [formData, setFormData] = useState<FormData>({
+    step1: {},
+    step2: {},
+    step3: {},
   });
+
+  const updateFormData = (
+    step: keyof FormData,
+    data: Partial<FormData[keyof FormData]>
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      [step]: data,
+    }));
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -29,6 +30,11 @@ export function PsicoBankProvider({ children }: { children: ReactNode }) {
   const closeModal = () => {
     setIsModalOpen(false);
     setCurrentStep(1);
+    setFormData({
+      step1: {},
+      step2: {},
+      step3: {},
+    });
   };
 
   const nextStep = () => {
@@ -48,6 +54,8 @@ export function PsicoBankProvider({ children }: { children: ReactNode }) {
       value={{
         isModalOpen,
         currentStep,
+        formData,
+        updateFormData,
         openModal,
         closeModal,
         nextStep,

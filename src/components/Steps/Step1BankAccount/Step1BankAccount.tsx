@@ -16,7 +16,7 @@ import InputMask from "react-input-mask";
 import { toast } from "react-toastify";
 
 export function Step1BankAccount() {
-  const { nextStep } = usePsicoBank();
+  const { nextStep, formData, updateFormData } = usePsicoBank();
   const {
     control,
     register,
@@ -28,6 +28,7 @@ export function Step1BankAccount() {
     defaultValues: {
       professional: "João Silva",
       personType: "PF",
+      ...formData.step1,
     },
   });
 
@@ -35,6 +36,7 @@ export function Step1BankAccount() {
 
   const onSubmit = (data: BankAccountFormData) => {
     console.log("Form data:", data);
+    updateFormData("step1", data);
     nextStep();
   };
 
